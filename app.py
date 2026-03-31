@@ -7,11 +7,14 @@ def home():
 		# 여기에 내 데이터를 만든다!
     my_profile = {
         "name": "홍길동", # 내 이름으로
-        "age": 18, # 내 나이로
-        "school": "종로산업정보학교",   # 추가!
-        "hobby": "게임"           # 추가!
+        "age": 20, # 내 나이로
+        "school": "종로산업정보학교",
+        "hobby": "코딩", # 내 취미로
+        "email": "test@example.com", # 추가!
+        "phone": "010-1234-5678", # 추가!
+        "dream": "개발자", # 추가!
+        "favorite_food": "치킨" # 추가!
     }
-
     # 이 부분이 바뀌었다!
     return render_template('index.html', data=my_profile)
 
