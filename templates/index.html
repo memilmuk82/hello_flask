@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>내 프로필</title>
+    <title>음식 카드</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-	<h1>{{ data.name }}</h1>
-	<p>{{ data.age }}세</p>
-	<p>학교: {{ data.school }}</p>
-	<p>취미: {{ data.hobby }}</p>
-	<p>이메일: {{ data.email }}</p>
-	<p>전화번호: {{ data.phone }}</p>
-	<p>꿈: {{ data.dream }}</p>
-	<p>좋아하는 음식: {{ data.favorite_food }}</p>
+<body class="p-8 bg-gray-100">
+    <h1 class="text-2xl font-bold mb-6">음식 카드 목록</h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {% for food in data %}
+            <div class="bg-white rounded-lg shadow p-4">
+                <h2 class="text-xl font-bold mb-2">{{ food }}</h2>
+                <p class="text-gray-600">맛있는 음식입니다.</p>
+            </div>
+        {% endfor %}
+    </div>
 </body>
 </html>
