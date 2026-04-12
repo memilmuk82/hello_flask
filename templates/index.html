@@ -24,5 +24,11 @@
             {% endif %}
         {% endfor %}               
     </div>
+    <form action="/send" method="POST" class="mt-8">
+        <input type="text" name="skill" placeholder="기술명(Skill)" class="border px-3 py-2 rounded">       
+        <input type="text" name="level" placeholder="난이도(Level)" class="border px-3 py-2 rounded">
+        <input type="text" name="status" placeholder="학습 여부(Status)" class="border px-3 py-2 rounded">
+        <button type="submit" class="bg-black text-white px-3 py-2 rounded">전송</button>
+    </form>
 </body>
 </html>
