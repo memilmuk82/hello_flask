@@ -8,21 +8,22 @@
     <h1 class="text-2xl font-bold mb-4">기술 스택 목록</h1>
     <div class="flex gap-2 flex-wrap">
         {% for skill in data %}
-            {% if skill != "C#" %}
-                {% if skill == "Python" or skill == "Java" or skill == "PHP" or skill == "Ruby" %}
-                    <span class="bg-gray-300 px-3 py-1 rounded-full">[BACKEND] {{ skill }}</span>
-                {% elif skill == "SQL" %}
-                    <span class="bg-purple-300 px-3 py-1 rounded-full">[DB] {{ skill }}</span>
-                {% elif skill == "HTML" or skill == "CSS" or skill =="JavaScript" or skill == "TypeScript" %}
-                    <span class="bg-orange-300 px-3 py-1 rounded-full">{{ skill }}</span>
-                {% elif skill == "C" or skill == "C++" or skill == "Rust" %}
-                    <span class="bg-blue-300 px-3 py-1 rounded-full">{{ skill }}</span>
-                <!--  #  elif skill == "C#" -->
-                {% else %}
-                    <span class="bg-green-300 px-3 py-1 rounded-full">{{ skill }}</span>
-                {% endif %}
+            {% if skill == "Python" %}
+                <span class="bg-gray-300 px-3 py-1 rounded-full">[BACKEND] {{ skill }}</span>
+            {% elif skill == "SQL" %}
+                <span class="bg-purple-300 px-3 py-1 rounded-full">[DB] {{ skill }}</span>
+            {% elif skill == "HTML" %}
+                <span class="bg-orange-300 px-3 py-1 rounded-full">{{ skill }}</span>
+            {% else %}
+                <span class="bg-green-300 px-3 py-1 rounded-full">{{ skill }}</span>
             {% endif %}
-        {% endfor %}               
+        {% endfor %}
+    </div>
+    <div>
+        <h2 class="mt9 text=xl font-bold">입력한 데이터</h2>
+        {% for item in messages %}
+            <div class="bg-yellow-200 p-2 m-2 rounded">{{ item }}</div>
+        {% endfor %}
     </div>
     <form action="/send" method="POST" class="mt-8">
         <input type="text" name="skill" placeholder="기술명(Skill)" class="border px-3 py-2 rounded">       
