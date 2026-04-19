@@ -22,9 +22,35 @@
     <div>
         <h2 class="mt9 text=xl font-bold">입력한 데이터</h2>
         {% for item in messages %}
-            <div class="bg-yellow-200 p-2 m-2 rounded">{{ item }}</div>
+            <div class="bg-yellow-200 p-2 m-2 rounded flex justify-between items-center">
+                <span>{{ item }}</span>
+
+                <form action="/delete" method="post">
+                    <input type="hidden" name="index" value="{{ loop.index0 }}">
+                    <button type="submit" class="ml-2 bg-red-500 text-white px-3 py-1 rounded" onclick="return confirm('정말 삭제할까요?')">
+                        삭제
+                    </button>
+                </form>
+            </div>
         {% endfor %}
     </div>
+    <form action="/delete_all" method="post">
+        <button type="submit" class="bg-black text-white px-4 py-2 rounded">
+            전체 삭제
+        </button>
+    </form>
+    <form action="/delete_selected" method="post">
+        {% for item in messages %}
+            <div class="bg-yellow-200 p-2 m-2 rounded flex items-center gap-3">
+                <input type="checkbox" name="delete_indexes" value="{{ loop.index0 }}">
+                <span>{{ item }}</span>
+            </div>
+        {% endfor %}
+
+        <button type="submit" class="mt-4 bg-red-500 text-white px-4 py-2 rounded">
+            선택 삭제
+        </button>
+    </form>
     <form action="/send" method="POST" class="mt-8">
         <input type="text" name="skill" placeholder="기술명(Skill)" class="border px-3 py-2 rounded">       
         <input type="text" name="level" placeholder="난이도(Level)" class="border px-3 py-2 rounded">
