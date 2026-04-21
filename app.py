@@ -38,5 +38,16 @@ def delete_selected():
 
     return redirect('/')
 
+@app.route('/edit/<int:index>')
+def edit(index):
+	return render_template('edit.html', index=index, item=messages[index])
+
+@app.route('/update',methods=['POST'])
+def update():
+	index = int(request.form['index'])
+	value = request.form.get('value')
+	messages[index] = value
+	return redirect('/')
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=True)

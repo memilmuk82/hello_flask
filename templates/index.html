@@ -41,12 +41,23 @@
     </form>
     <form action="/delete_selected" method="post">
         {% for item in messages %}
-            <div class="bg-yellow-200 p-2 m-2 rounded flex items-center gap-3">
-                <input type="checkbox" name="delete_indexes" value="{{ loop.index0 }}">
-                <span>{{ item }}</span>
+            <div class="bg-yellow-200 p-2 m-2 rounded flex justify-between items-center">
+                <span>{{ item }}</span>                
+                <div>
+                    <form action="/delete" method="post" style="display:inline;">
+                        <input type="hidden" name="index" value="{{ loop.index0 }}">
+                        <button type="submit" class="ml-2 bg-red-500 text-white px-3 py-1 rounded">
+                            삭제
+                        </button>
+                    </form>                
+                    <form action="/edit/{{ loop.index0 }}" method="get" style="display:inline;">
+                        <button type="submit" class="ml-2 bg-blue-500 text-white px-3 py-1 rounded">
+                            수정
+                        </button>
+                    </form>                    
+                </div>                
             </div>
         {% endfor %}
-
         <button type="submit" class="mt-4 bg-red-500 text-white px-4 py-2 rounded">
             선택 삭제
         </button>
