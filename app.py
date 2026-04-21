@@ -13,7 +13,7 @@ def send():
     skill = request.form.get('skill')
     level = request.form.get('level')
     status = request.form.get('status')    
-    messages.append(status + " / " + level + " / " + skill)    
+    messages.append(skill + " / " + level + " / " + status)    
     return redirect('/')
 
 @app.route('/delete', methods=['POST'])
@@ -42,10 +42,17 @@ def delete_selected():
 def edit(index):
 	return render_template('edit.html', index=index, item=messages[index])
 
-@app.route('/update',methods=['POST'])
+@app.route('/update', methods=['POST'])
 def update():
 	index = int(request.form['index'])
 	value = request.form.get('value')
+ 
+	if value.strip()=="":
+		return redirect(f'/edit/{index}')
+
+	if value == messages[index]:
+		return redirect('/')
+
 	messages[index] = value
 	return redirect('/')
 
