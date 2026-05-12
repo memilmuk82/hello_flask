@@ -6,6 +6,7 @@
 </head>
 <body class="p-8">
     <h1 class="text-2xl font-bold mb-4">기술 스택 목록</h1>
+
     <div class="flex gap-2 flex-wrap">
         {% for skill in data %}
             {% if skill == "Python" %}
@@ -19,51 +20,50 @@
             {% endif %}
         {% endfor %}
     </div>
-    <div>
-        <h2 class="mt9 text=xl font-bold">입력한 데이터</h2>
-        <form action="/delete_selected" method="post">
-        {% for item in messages %}
-            <div class="bg-yellow-200 p-2 m-2 rounded flex items-center gap-3">
-                <input type="checkbox" name="delete_indexes" value="{{ loop.index0 }}">
-                <span>{{ item }}</span>
-            </div>
-        {% endfor %}
 
-    <button type="submit" class="mt-4 bg-red-500 text-white px-4 py-2 rounded">
-        선택 삭제
-    </button>
-</form>
+    <div>
+        <h2 class="mt-9 text-xl font-bold">입력한 데이터</h2>
+        <form action="/delete_selected" method="post">
+            {% for item in messages %}
+                <div class="bg-yellow-200 p-2 m-2 rounded flex items-center gap-3">
+                    <input type="checkbox" name="delete_indexes" value="{{ loop.index0 }}">
+                    <span>{{ item }}</span>
+                </div>
+            {% endfor %}
+            <button type="submit" class="mt-4 bg-red-500 text-white px-4 py-2 rounded">
+                선택 삭제
+            </button>
+        </form>
     </div>
-    <form action="/delete_all" method="post">
+    <form action="/delete_all" method="post" class="mt-4">
         <button type="submit" class="bg-black text-white px-4 py-2 rounded">
             전체 삭제
         </button>
     </form>
-    <form action="/delete_selected" method="post">
+
+    <div class="mt-6">
         {% for item in messages %}
             <div class="bg-yellow-200 p-2 m-2 rounded flex justify-between items-center">
-                <span>{{ item }}</span>                
-                <div>
+                <span>{{ item }}</span>
+                <div class="flex gap-2">
                     <form action="/delete" method="post" style="display:inline;">
                         <input type="hidden" name="index" value="{{ loop.index0 }}">
-                        <button type="submit" class="ml-2 bg-red-500 text-white px-3 py-1 rounded">
+                        <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded">
                             삭제
                         </button>
-                    </form>                
+                    </form>
                     <form action="/edit/{{ loop.index0 }}" method="get" style="display:inline;">
-                        <button type="submit" class="ml-2 bg-blue-500 text-white px-3 py-1 rounded">
+                        <button type="submit" class="bg-blue-500 text-white px-3 py-1 rounded">
                             수정
                         </button>
-                    </form>                    
-                </div>                
+                    </form>
+                </div>
             </div>
         {% endfor %}
-        <button type="submit" class="mt-4 bg-red-500 text-white px-4 py-2 rounded">
-            선택 삭제
-        </button>
-    </form>
+    </div>
+
     <form action="/send" method="POST" class="mt-8">
-        <input type="text" name="skill" placeholder="기술명(Skill)" class="border px-3 py-2 rounded">       
+        <input type="text" name="skill" placeholder="기술명(Skill)" class="border px-3 py-2 rounded">
         <input type="text" name="level" placeholder="난이도(Level)" class="border px-3 py-2 rounded">
         <input type="text" name="status" placeholder="학습 여부(Status)" class="border px-3 py-2 rounded">
         <button type="submit" class="bg-black text-white px-3 py-2 rounded">전송</button>

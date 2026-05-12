@@ -1,7 +1,11 @@
 from flask import Flask, render_template, request, redirect
 
 app = Flask(__name__)
-messages = []
+messages = [
+    {"skill": "Python"},
+    {"skill": "HTML"},
+    {"skill": "SQL"}
+]
 
 @app.route('/')
 def home():
