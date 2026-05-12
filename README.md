@@ -1,5 +1,96 @@
 # HELLO_FLASK
 
+## 📅 2026-05-12
+
+### 1. 오늘 만든 기능
+- 딕셔너리 안에 여러 값을 저장하도록 확장
+- `skill`, `level`, `status` 입력값 받기
+- 입력한 값을 하나의 딕셔너리로 묶어서 `messages` 리스트에 저장
+- 딕셔너리에서 `skill`, `level`, `status` 값을 꺼내 화면에 출력
+- 삭제 버튼으로 리스트 안의 딕셔너리 한 덩어리 삭제
+- 삭제 확인 메시지 추가
+- 전체 삭제 버튼 추가
+- 선택 삭제 버튼 추가
+- 체크박스로 삭제할 항목 선택
+- 삭제 후 메인 화면으로 redirect
+
+### 2. 사용한 문법
+- dictionary(dict)
+- key
+- value
+- list
+- append
+- pop
+- clear
+- len
+- if
+- or
+- for
+- enumerate
+- loop.index0
+- request.form.get
+- request.form.getlist
+- strip
+- render_template
+- redirect
+- route parameter
+- form
+- checkbox
+- hidden input
+
+### 3. 실행 결과
+- 기술명, 수준, 학습 상태를 입력할 수 있음
+- 입력한 데이터가 딕셔너리 형태로 저장됨
+- 저장된 딕셔너리에서 각각의 값을 꺼내 화면에 출력함
+- 삭제 버튼을 누르면 해당 데이터 한 줄이 삭제됨
+- 전체 삭제 버튼을 누르면 모든 데이터가 삭제됨
+- 체크박스를 선택한 뒤 선택 삭제 버튼을 누르면 선택한 데이터만 삭제됨
+- 삭제 전 확인 메시지가 출력됨
+- 삭제 후 메인 화면으로 돌아옴
+
+### 4. 어려웠던 점
+-
+
+### 5. 추가로 해본 것
+-
+
+## 📅 2026-05-06
+
+### 1. 오늘 만든 기능
+- 문자열로 저장하던 데이터를 딕셔너리 형태로 바꾸기
+- 리스트 안에 딕셔너리 데이터 넣기
+- 딕셔너리에서 skill 값 꺼내서 화면에 출력
+- 입력한 값을 딕셔너리 형태로 저장
+- 기술명에 따라 화면 색상 다르게 출력
+- 오늘 사용하지 않는 CRUD 코드를 정리함
+
+### 2. 사용한 문법
+- dictionary(dict)
+- key
+- value
+- list
+- append
+- for
+- if
+- elif
+- else
+- request.form.get
+- strip
+- render_template
+- redirect
+
+### 3. 실행 결과
+- 입력한 기술명이 딕셔너리 형태로 저장됨
+- 저장된 딕셔너리에서 skill 값을 꺼내 화면에 출력됨
+- Python, HTML, SQL, Bash, Java, SQL, JavaScript 입력 시 서로 다른 색상으로 표시됨
+- 삭제와 수정 기능은 다음 수업에서 딕셔너리 구조에 맞게 다시 연결할 예정임
+
+### 4. 어려웠던 점
+-
+
+### 5. 추가로 해본 것
+-
+
 ## 📅 2026-04-22
 
 ### 1. 오늘 만든 기능

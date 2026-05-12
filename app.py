@@ -1,64 +1,59 @@
 from flask import Flask, render_template, request, redirect
 
 app = Flask(__name__)
-messages = [
-    {"skill": "Python"},
-    {"skill": "HTML"},
-    {"skill": "SQL"}
-]
+
+messages = []
 
 @app.route('/')
 def home():
-    skills = ["Python", "HTML", "SQL", "Bash"]
-    return render_template('index.html', data=skills, messages=messages)
+    return render_template('index.html', messages=messages)
 
 @app.route('/send', methods=['POST'])
 def send():
-    skill = request.form.get('skill')
-    level = request.form.get('level')
-    status = request.form.get('status')    
-    messages.append(skill + " / " + level + " / " + status)    
+    skill = request.form.get('skill', '').strip()
+    level = request.form.get('level', '').strip()
+    status = request.form.get('status', '').strip()
+
+    if not skill or not level or not status:
+        return redirect('/')
+
+    messages.append({
+        "skill": skill,
+        "level": level,
+        "status": status
+    })
+
     return redirect('/')
 
-@app.route('/delete', methods=['POST'])
-def delete():
-    index = int(request.form['index'])
-    messages.pop(index)
+@app.route('/delete/<int:index>', methods=['POST'])
+def delete(index):
+    if 0 <= index < len(messages):
+        messages.pop(index)
+        
     return redirect('/')
 
-@app.route("/delete_all", methods=['POST'])
+@app.route('/delete_all', methods=['POST'])
 def delete_all():
-    messages.clear()    
+    messages.clear()
+    
     return redirect('/')
 
 @app.route('/delete_selected', methods=['POST'])
 def delete_selected():
-    indexes = request.form.getlist('delete_indexes')
-    indexes = [int(index) for index in indexes]
-    indexes.sort(reverse=True)
+    selected_indexes = request.form.getlist('selected_indexes')
 
-    for index in indexes:
-        messages.pop(index)
+    remaining_messages = []
+
+    for index, item in enumerate(messages):
+        if str(index) not in selected_indexes:
+            remaining_messages.append(item)
+
+    messages.clear()
+
+    for item in remaining_messages:
+        messages.append(item)
 
     return redirect('/')
-
-@app.route('/edit/<int:index>')
-def edit(index):
-	return render_template('edit.html', index=index, item=messages[index])
-
-@app.route('/update', methods=['POST'])
-def update():
-	index = int(request.form['index'])
-	value = request.form.get('value')
- 
-	if value.strip()=="":
-		return redirect(f'/edit/{index}')
-
-	if value == messages[index]:
-		return redirect('/')
-
-	messages[index] = value
-	return redirect('/')
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000, debug=True)
