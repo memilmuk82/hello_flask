@@ -7,33 +7,91 @@
 <body class="p-8">
     <h1 class="text-2xl font-bold mb-4">내 기술 스택</h1>
 
-        <form action="/send" method="POST" class="mt-8">
-            <input type="text" name="skill" placeholder="기술명(Skill)" class="border px-3 py-2 rounded">
-            <button type="submit" class="bg-black text-white px-3 py-2 rounded">전송</button>
-        </form>
+    <form action="/send" method="POST" class="mb-6 space-y-2">
+        <input 
+            type="text" 
+            name="skill" 
+            placeholder="기술명 예: Python"
+            class="border px-3 py-2 rounded w-full"
+        >
+
+        <input 
+            type="text" 
+            name="level" 
+            placeholder="수준 예: 상, 중, 하"
+            class="border px-3 py-2 rounded w-full"
+        >
+
+        <input 
+            type="text" 
+            name="status" 
+            placeholder="상태 예: 공부중, 복습필요, 완료"
+            class="border px-3 py-2 rounded w-full"
+        >
+
+        <button 
+            type="submit"
+            class="bg-blue-500 text-white px-4 py-2 rounded"
+        >
+            추가
+        </button>
+    </form>
 
     <h2 class="text-xl font-bold mb-3">입력한 데이터</h2>
-    <div class="flex gap-2 flex-wrap">
-        {% for item in messages %}
-            {% if item["skill"] == "Python" %}
-                <span class="bg-blue-300 px-3 py-1 rounded-full">{{item["skill"]}}</span>
-            {% elif item["skill"] == "SQL" %}
-                <span class="bg-cyan-300 px-3 py-1 rounded-full">{{item["skill"]}}</span>
-            {% elif item["skill"] == "HTML" %}
-                <span class="bg-orange-300 px-3 py-1 rounded-full">{{item["skill"]}}</span>
-            {% elif item["skill"] == "CSS" %}
-                <span class="bg-sky-300 px-3 py-1 rounded-full">{{item["skill"]}}</span>
-            {% elif item["skill"] == "Java" %}
-                <span class="bg-red-300 px-3 py-1 rounded-full">{{item["skill"]}}</span>
-            {% elif item["skill"] == "JavaScript" %}
-                <span class="bg-yellow-300 px-3 py-1 rounded-full">{{item["skill"]}}</span>
-            {% elif item["skill"] == "Bash" %}
-                <span class="bg-green-300 px-3 py-1 rounded-full">{{ item["skill"] }}</span>
-            {% else %}
-                <span class="bg-gray-300 px-3 py-1 rounded-full">{{item["skill"]}}</span>
-            {% endif %}
-        {% endfor %}
-    </div>
+    <form id="delete-selected-form" action="/delete_selected" method="POST">
+        <div class="space-y-2">
+            {% for item in messages %}
+                <div class="border p-3 rounded flex justify-between items-center">
+                    <div class="flex items-center gap-3">
+                        <input
+                            type="checkbox"
+                            name="selected_indexes"
+                            value="{{ loop.index0 }}"
+                        >
 
+                        <div>
+                            <p class="font-bold">{{ item["skill"] }}</p>
+                            <p class="text-sm text-gray-600">
+                                수준: {{ item["level"] }} / 상태: {{ item["status"] }}
+                            </p>
+                        </div>
+                    </div>
+
+                    <button 
+                        type="submit"
+                        formaction="/delete/{{ loop.index0 }}"
+                        formmethod="POST"
+                        class="bg-red-500 text-white px-3 py-1 rounded"
+                        onclick="return confirm('정말 삭제할까요?')"
+                    >
+                        삭제
+                    </button>
+
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </form>
+
+    <div class="flex gap-2 mt-4">
+        <button
+            type="submit"
+            form="delete-selected-form"
+            class="bg-orange-500 text-white px-4 py-2 rounded"
+            onclick="return confirm('선택한 데이터를 삭제할까요?')"
+        >
+            선택 삭제
+        </button>
+
+        <form action="delete_all" method="POST">
+            <button 
+                type="submit"
+                class="bg-red-700 text-white px-4 py-2 rounded"
+                onclick="return confirm('모든 데이터를 삭제할까요?')"
+            >
+                전체 삭제
+            </button>
+        </form>
+    </div>
 </body>
 </html>

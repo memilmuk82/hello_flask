@@ -11,11 +11,47 @@ def home():
 @app.route('/send', methods=['POST'])
 def send():
     skill = request.form.get('skill', '').strip()
+    level = request.form.get('level', '').strip()
+    status = request.form.get('status', '').strip()
 
-    if not skill:
+    if not skill or not level or not status:
         return redirect('/')
+
+    messages.append({
+        "skill": skill,
+        "level": level,
+        "status": status
+    })
+
+    return redirect('/')
+
+@app.route('/delete/<int:index>', methods=['POST'])
+def delete(index):
+    if 0 <= index < len(messages):
+        messages.pop(index)
+        
+    return redirect('/')
+
+@app.route('/delete_all', methods=['POST'])
+def delete_all():
+    messages.clear()
     
-    messages.append({"skill": skill})
+    return redirect('/')
+
+@app.route('/delete_selected', methods=['POST'])
+def delete_selected():
+    selected_indexes = request.form.getlist('selected_indexes')
+
+    remaining_messages = []
+
+    for index, item in enumerate(messages):
+        if str(index) not in selected_indexes:
+            remaining_messages.append(item)
+
+    messages.clear()
+
+    for item in remaining_messages:
+        messages.append(item)
 
     return redirect('/')
 
