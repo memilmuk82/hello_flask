@@ -57,16 +57,23 @@
                         </div>
                     </div>
 
-                    <button 
-                        type="submit"
-                        formaction="/delete/{{ loop.index0 }}"
-                        formmethod="POST"
-                        class="bg-red-500 text-white px-3 py-1 rounded"
-                        onclick="return confirm('정말 삭제할까요?')"
-                    >
-                        삭제
-                    </button>
+                    <div class="flex gap-2">
+                        <a
+                            href="/edit/{{ loop.index0 }}"
+                            class="bg-green-500 text-white px-3 py-1 rounded"
+                        >
+                            수정
+                        </a>
 
+                        <button 
+                            type="submit"
+                            formaction="/delete/{{ loop.index0 }}"
+                            formmethod="POST"
+                            class="bg-red-500 text-white px-3 py-1 rounded"
+                            onclick="return confirm('정말 삭제할까요?')"
+                        >
+                            삭제
+                        </button>
                     </div>
                 </div>
             {% endfor %}
