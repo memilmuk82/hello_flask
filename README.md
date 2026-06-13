@@ -1,5 +1,51 @@
 # HELLO_FLASK
 
+## 📅 2026-05-20
+
+### 1. 오늘 만든 기능
+-index 기반 CRUD 구조를 id 기반 CRUD 구조로 변경
+-데이터마다 고유 번호인 id 추가
+-`next_id`를 사용하여 새 데이터에 id 자동 부여
+-목록 화면에 id 표시
+-id 기준 개별 삭제 기능 구현
+-id 기준 선택 삭제 기능 구현
+-id 기준 수정 페이지 이동 구현
+-id 기준 데이터 수정 기능 구현
+-SQLite 전환을 위한 id 구조 준비
+
+### 2. 사용한 문법
+-id
+-global
+-list
+-dictionary
+-for
+-if
+-break
+-None
+-request.form.get
+-request.form.getlist
+-redirect
+-render_template
+-route parameter
+-item["id"]
+-messages.remove()
+-messages.clear()
+
+### 3. 실행 결과
+-데이터를 추가하면 각 데이터에 id가 자동으로 붙음
+-화면에서 `#1 Python`처럼 id와 기술명이 함께 표시됨
+-삭제 버튼을 누르면 id가 같은 데이터만 삭제됨
+-선택 삭제를 하면 선택한 id의 데이터만 삭제됨
+-수정 버튼을 누르면 id 기준으로 수정 화면에 이동함
+-수정 후에도 id는 그대로 유지되고 내용만 변경됨
+-SQLite 수업으로 넘어가기 위한 기본 구조가 준비됨
+
+### 4. 어려웠던 점
+-
+
+### 5. 추가로 해본 것
+-
+
 ## 📅 2026-05-14
 
 ### 1. 오늘 만든 기능
@@ -226,7 +272,7 @@
 Flask와 Jinja2를 사용해서
 파이썬 데이터를 HTML 화면에 출력하는 연습을 하는 프로젝트입니다.
 
-## ㅋ에 배운 내용
+## 지금까지 배운 내용
 - Flask 기본 실행
 - templates 폴더 사용
 - index.html 만들기
