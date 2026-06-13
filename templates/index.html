@@ -18,26 +18,26 @@
             name="skill"
             placeholder="기술명 예: Python"
             class="border px-3 py-2 rounded w-full"
->
+        >
 
         <input
             type="text"
             name="level"
             placeholder="수준 예: 상, 중, 하"
             class="border px-3 py-2 rounded w-full"
->
+        >
 
         <input
             type="text"
             name="status"
             placeholder="상태 예: 공부중, 복습필요, 완료"
             class="border px-3 py-2 rounded w-full"
->
+        >
 
         <button
             type="submit"
             class="bg-blue-500 text-white px-4 py-2 rounded"
->
+        >
             추가
         </button>
     </form>
@@ -63,7 +63,7 @@
                             type="checkbox"
                             name="selected_ids"
                             value="{{ item['id'] }}"
->
+                        >
 
                         <div>
                             <!--
@@ -89,7 +89,7 @@
                         <a
                             href="/edit/{{ item['id'] }}"
                             class="bg-green-500 text-white px-3 py-1 rounded"
->
+                        >
                             수정
                         </a>
 
@@ -105,7 +105,7 @@
                             formmethod="POST"
                             class="bg-red-500 text-white px-3 py-1 rounded"
                             onclick="return confirm('정말 삭제할까요?')"
->
+                        >
                             삭제
                         </button>
                     </div>
@@ -125,7 +125,7 @@
             form="delete-selected-form"
             class="bg-orange-500 text-white px-4 py-2 rounded"
             onclick="return confirm('선택한 데이터를 삭제할까요?')"
->
+        >
             선택 삭제
         </button>
 
@@ -139,7 +139,7 @@
                 type="submit"
                 class="bg-red-700 text-white px-4 py-2 rounded"
                 onclick="return confirm('모든 데이터를 삭제할까요?')"
->
+            >
                 전체 삭제
             </button>
         </form>
