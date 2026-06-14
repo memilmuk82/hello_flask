@@ -7,34 +7,29 @@
 <body class="p-8">
     <h1 class="text-2xl font-bold mb-4">내 기술 스택</h1>
 
-    <!--
-        입력 form이다.
-        사용자가 기술명, 수준, 학습 상태를 입력한 뒤 추가 버튼을 누르면
-        /send 주소로 POST 요청을 보낸다.
-    -->
     <form action="/send" method="POST" class="mb-6 space-y-2">
-        <input
-            type="text"
-            name="skill"
+        <input 
+            type="text" 
+            name="skill" 
             placeholder="기술명 예: Python"
             class="border px-3 py-2 rounded w-full"
         >
 
-        <input
-            type="text"
-            name="level"
+        <input 
+            type="text" 
+            name="level" 
             placeholder="수준 예: 상, 중, 하"
             class="border px-3 py-2 rounded w-full"
         >
 
-        <input
-            type="text"
-            name="status"
+        <input 
+            type="text" 
+            name="status" 
             placeholder="상태 예: 공부중, 복습필요, 완료"
             class="border px-3 py-2 rounded w-full"
         >
 
-        <button
+        <button 
             type="submit"
             class="bg-blue-500 text-white px-4 py-2 rounded"
         >
@@ -43,22 +38,11 @@
     </form>
 
     <h2 class="text-xl font-bold mb-3">입력한 데이터</h2>
-
-    <!--
-        선택 삭제용 form이다.
-        여러 checkbox를 선택한 뒤 선택 삭제 버튼을 누르면
-        /delete_selected 주소로 POST 요청을 보낸다.
-    -->
     <form id="delete-selected-form" action="/delete_selected" method="POST">
         <div class="space-y-2">
             {% for item in messages %}
                 <div class="border p-3 rounded flex justify-between items-center">
                     <div class="flex items-center gap-3">
-                        <!--
-                            선택 삭제용 checkbox이다.
-                            value에는 loop.index0이 아니라 item['id']를 넣는다.
-                            즉, 몇 번째 데이터인지가 아니라 데이터의 고유 번호를 서버로 보낸다.
-                        -->
                         <input
                             type="checkbox"
                             name="selected_ids"
@@ -66,14 +50,9 @@
                         >
 
                         <div>
-                            <!--
-                                item["id"]를 화면에 출력한다.
-                                학생이 id가 실제로 저장되고 있음을 눈으로 확인할 수 있다.
-                            -->
                             <p class="font-bold">
                                 #{{ item["id"] }} {{ item["skill"] }}
                             </p>
-
                             <p class="text-sm text-gray-600">
                                 수준: {{ item["level"] }} / 상태: {{ item["status"] }}
                             </p>
@@ -81,11 +60,6 @@
                     </div>
 
                     <div class="flex gap-2">
-                        <!--
-                            수정 버튼이다.
-                            기존에는 loop.index0을 사용했지만,
-                            이제는 item['id']를 사용한다.
-                        -->
                         <a
                             href="/edit/{{ item['id'] }}"
                             class="bg-green-500 text-white px-3 py-1 rounded"
@@ -93,13 +67,7 @@
                             수정
                         </a>
 
-                        <!--
-                            삭제 버튼이다.
-                            formaction을 사용하면 같은 form 안에서도
-                            이 버튼만 다른 주소로 요청을 보낼 수 있다.
-                            여기서도 loop.index0이 아니라 item['id']를 사용한다.
-                        -->
-                        <button
+                        <button 
                             type="submit"
                             formaction="/delete/{{ item['id'] }}"
                             formmethod="POST"
@@ -115,11 +83,6 @@
     </form>
 
     <div class="flex gap-2 mt-4">
-        <!--
-            선택 삭제 버튼이다.
-            form="delete-selected-form"은
-            이 버튼이 위쪽의 선택 삭제 form과 연결되어 있다는 뜻이다.
-        -->
         <button
             type="submit"
             form="delete-selected-form"
@@ -129,13 +92,8 @@
             선택 삭제
         </button>
 
-        <!--
-            전체 삭제 form이다.
-            전체 삭제는 특정 id가 필요하지 않다.
-            messages 전체를 비우면 된다.
-        -->
-        <form action="/delete_all" method="POST">
-            <button
+        <form action="delete_all" method="POST">
+            <button 
                 type="submit"
                 class="bg-red-700 text-white px-4 py-2 rounded"
                 onclick="return confirm('모든 데이터를 삭제할까요?')"
