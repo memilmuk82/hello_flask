@@ -45,12 +45,14 @@
                     <div class="flex items-center gap-3">
                         <input
                             type="checkbox"
-                            name="selected_indexes"
-                            value="{{ loop.index0 }}"
+                            name="selected_ids"
+                            value="{{ item['id'] }}"
                         >
 
                         <div>
-                            <p class="font-bold">{{ item["skill"] }}</p>
+                            <p class="font-bold">
+                                #{{ item["id"] }} {{ item["skill"] }}
+                            </p>
                             <p class="text-sm text-gray-600">
                                 수준: {{ item["level"] }} / 상태: {{ item["status"] }}
                             </p>
@@ -59,7 +61,7 @@
 
                     <div class="flex gap-2">
                         <a
-                            href="/edit/{{ loop.index0 }}"
+                            href="/edit/{{ item['id'] }}"
                             class="bg-green-500 text-white px-3 py-1 rounded"
                         >
                             수정
@@ -67,7 +69,7 @@
 
                         <button 
                             type="submit"
-                            formaction="/delete/{{ loop.index0 }}"
+                            formaction="/delete/{{ item['id'] }}"
                             formmethod="POST"
                             class="bg-red-500 text-white px-3 py-1 rounded"
                             onclick="return confirm('정말 삭제할까요?')"
